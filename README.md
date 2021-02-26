@@ -5,7 +5,7 @@
 > Adds a phone number validation check to yup validator using [**libphonenumber-js**](https://www.npmjs.com/package/libphonenumber-js) which gives accurate validation checks.  
 > _Read more about the core library here_ [_libphonenumber_](https://github.com/googlei18n/libphonenumber/blob/master/README.md#readme).
 
-This package is a fork of [yup-phone](https://github.com/abhisekp/yup-phone) made by [abhisekp](https://github.com/abhisekp). It replaces [**google-libphonenumber**](https://www.npmjs.com/package/google-libphonenumber) with the much smaller port [**libphonenumber-js**](https://www.npmjs.com/package/libphonenumber-js) with the intention of drastically reducing the bundle size. The only drawback is that a few phone numbers will slip through the cracks and give false positives. If that is an issue for you, go ahead and use the original library!
+This package is a fork of [yup-phone](https://github.com/abhisekp/yup-phone) made by [abhisekp](https://github.com/abhisekp). It replaces [**google-libphonenumber**](https://www.npmjs.com/package/google-libphonenumber) with the much smaller port [**libphonenumber-js**](https://www.npmjs.com/package/libphonenumber-js) with the intention of drastically reducing the bundle size. The only drawback is that a few phone numbers will slip through the cracks and give false positives. If that is an issue for you, go ahead and use the original package!
 
 ## Install
 
@@ -26,7 +26,7 @@ import "yup-phone-lite";
 const phoneSchema = Yup.string().phone().required();
 
 (async () => {
-  console.log(await phoneSchema.isValid("9876543210")); // → true
+  console.log(await phoneSchema.isValid("(541) 754-3010")); // → true
 })();
 ```
 
@@ -60,7 +60,7 @@ const phoneSchema = Yup.string()
   .required();
 
 try {
-  phoneSchema.validateSync("+1 345 9490088");
+  phoneSchema.validateSync("+1-541-754-3010");
 } catch (error) {
   console.log(error.message); // → this is invalid
 }
