@@ -70,36 +70,6 @@ try {
 
 For more examples, check [yup-phone-lite.test.ts](src/yup-phone-lite.test.ts) file.
 
-### Module Sizes
-
-```
-Destination: dist/yup-phone-lite.umd.js
-Bundle Size:  189.22 KB
-Minified Size:  103.66 KB
-Gzipped Size:  25.5 KB
-```
-
-```
-Destination: dist/yup-phone-lite.umd.min.js
-Bundle Size:  102.71 KB
-Minified Size:  101.79 KB
-Gzipped Size:  26.04 KB
-```
-
-```
-Destination: dist/yup-phone-lite.esm.js
-Bundle Size:  433 B
-Minified Size:  434 B
-Gzipped Size:  255 B
-```
-
-```
-Destination: dist/yup-phone-lite.cjs.js
-Bundle Size:  596 B
-Minified Size:  597 B
-Gzipped Size:  339 B
-```
-
 ### Contributing
 
 - Uses Rollup for bundling.
