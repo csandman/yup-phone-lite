@@ -1,4 +1,6 @@
-# yup-phone-lite [![MIT License](https://img.shields.io/badge/-MIT-56A902.svg?style=flat-square&maxAge=2592000 "MIT License")](LICENSE) [![npm - yup-phone-lite](https://img.shields.io/npm/v/yup-phone-lite)](https://www.npmjs.com/package/yup-phone-lite "yup-phone-lite npm")
+# yup-phone-lite
+
+[![MIT License](https://badgen.net/github/license/csandman/yup-phone-lite "MIT License")](LICENSE) [![npm - yup-phone-lite](https://img.shields.io/npm/v/yup-phone-lite)](https://www.npmjs.com/package/yup-phone-lite "yup-phone-lite npm") [![bundle size - yup-phone-lite](https://badgen.net/bundlephobia/min/yup-phone-lite)](https://bundlephobia.com/result?p=yup-phone-lite) [![bundle size - yup-phone-lite](https://badgen.net/bundlephobia/minzip/yup-phone-lite)](https://bundlephobia.com/result?p=yup-phone-lite)
 
 > Adds a phone number validation check to yup validator using [**libphonenumber-js**](https://www.npmjs.com/package/libphonenumber-js) which gives accurate validation checks.  
 > _Read more about the core library here_ [_libphonenumber_](https://github.com/googlei18n/libphonenumber/blob/master/README.md#readme).
