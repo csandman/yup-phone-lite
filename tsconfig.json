@@ -9,7 +9,8 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "pretty": true,
-    "target": "esnext"
+    "target": "esnext",
+    "moduleResolution": "node"
   },
   "include": ["src/**/*"]
 }
