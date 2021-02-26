@@ -5,6 +5,8 @@
 > Adds a phone number validation check to yup validator using [**libphonenumber-js**](https://www.npmjs.com/package/libphonenumber-js) which gives accurate validation checks.  
 > _Read more about the core library here_ [_libphonenumber_](https://github.com/googlei18n/libphonenumber/blob/master/README.md#readme).
 
+This package is a fork of [yup-phone](https://github.com/abhisekp/yup-phone) made by [abhisekp](https://github.com/abhisekp). It replaces [**google-libphonenumber**](https://www.npmjs.com/package/google-libphonenumber) with the much smaller port [**libphonenumber-js**](https://www.npmjs.com/package/libphonenumber-js) with the intention of drastically reducing the bundle size. The only drawback is that a few phone numbers will slip through the cracks and give false positives. If that is an issue for you, go ahead and use the original library!
+
 ## Install
 
 ```sh
@@ -31,7 +33,6 @@ const phoneSchema = Yup.string().phone().required();
 ---
 
 ```js
-// See https://repl.it/repls/SwiftImpossibleCertification
 import * as Yup from "yup";
 // const Yup = require("yup");
 import "yup-phone-lite";
@@ -48,7 +49,6 @@ const phoneSchema = Yup.string().phone("IN").required();
 ---
 
 ```js
-// See https://repl.it/repls/UniqueForsakenDownloads
 import * as Yup from "yup";
 // const Yup = require("yup");
 import "yup-phone-lite";
@@ -88,4 +88,4 @@ $ npm publish # Publish npm package (prompts for version)
 
 ## License
 
-[MIT](LICENSE).
+[MIT](LICENSE)
