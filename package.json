@@ -1,0 +1,87 @@
+{
+  "name": "yup-phone-lite",
+  "description": "Adds a phone number validation check to yup validator using libphonenumber-js.",
+  "version": "1.0.0",
+  "main": "dist/yup-phone-lite.cjs.js",
+  "module": "dist/yup-phone-lite.esm.js",
+  "browser": "dist/yup-phone-lite.umd.js",
+  "engines": {
+    "node": ">=9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/csandman/yup-phone-lite"
+  },
+  "author": {
+    "name": "Chris Sandvik",
+    "email": "chris.sandvik@gmail.com",
+    "url": "https://github.com/csandman"
+  },
+  "bugs": {
+    "url": "https://github.com/csandman/yup-phone-lite/issues"
+  },
+  "keywords": [
+    "yup",
+    "phone",
+    "yup-phone-lite",
+    "google",
+    "validation",
+    "schema",
+    "number",
+    "google-libphonenumber",
+    "libphonenumber-js"
+  ],
+  "license": "MIT",
+  "readme": "README.md",
+  "homepage": "http://yup-phone-lite.js.org",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "jest"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@types/yup": "^0.29.3",
+    "core-js": "3.8.3",
+    "libphonenumber-js": "^1.9.11"
+  },
+  "devDependencies": {
+    "@ampproject/rollup-plugin-closure-compiler": "^0.26.0",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@commitlint/cli": "^11.0.0",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/npm": "^7.0.5",
+    "@semantic-release/release-notes-generator": "^9.0.1",
+    "@types/babel__core": "^7.1.9",
+    "@types/core-js": "^2.5.3",
+    "@types/eslint": "^7.2.0",
+    "@types/jest": "^26.0.4",
+    "@types/prettier": "^2.0.2",
+    "@types/rollup": "^0.54.0",
+    "@types/rollup-plugin-commonjs": "^9.3.1",
+    "@types/rollup-plugin-node-resolve": "^4.1.0",
+    "@types/typescript": "^2.0.0",
+    "@wessberg/rollup-plugin-ts": "^1.2.28",
+    "babel-jest": "^26.1.0",
+    "jest": "^26.1.0",
+    "prettier": "^2.0.5",
+    "rollup": "^2.22.0",
+    "rollup-plugin-analyzer": "^4.0.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-filesize": "^9.0.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-progress": "^1.1.2",
+    "tslint": "^6.1.2",
+    "tslint-config-airbnb-base": "^0.3.0",
+    "types-installer": "^1.6.3",
+    "typescript": "^4.0.2",
+    "yup": "^0.32.9"
+  },
+  "peerDependencies": {
+    "yup": "^0.27.0"
+  }
+}
