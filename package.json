@@ -33,7 +33,6 @@
   ],
   "license": "MIT",
   "readme": "README.md",
-  "homepage": "http://yup-phone-lite.js.org",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
