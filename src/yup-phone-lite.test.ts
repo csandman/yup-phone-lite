@@ -87,4 +87,13 @@ describe("yup-phone-lite validation", () => {
     const phoneSchema = Yup.string().phone("SG").required();
     expect(phoneSchema.isValidSync("+65 6511 9266")).toBe(true);
   });
+
+  it("does not perform required field validation without required chain", () => {
+    const phoneSchema = Yup.string().phone();
+    expect(phoneSchema.isValidSync("")).toBe(true);
+    expect(phoneSchema.isValidSync()).toBe(true);
+    const requiredPhoneSchema = Yup.string().phone().required();
+    expect(requiredPhoneSchema.isValidSync("")).toBe(false);
+    expect(requiredPhoneSchema.isValidSync()).toBe(false);
+  });
 });

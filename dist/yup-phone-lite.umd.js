@@ -3478,6 +3478,10 @@
 	      countryCode = "US";
 	    }
 
+	    if (value === undefined || value === "") {
+	      return true;
+	    }
+
 	    try {
 	      /* check if the countryCode provided should be used as
 	        default country code or strictly followed
