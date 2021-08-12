@@ -1,68 +1,74 @@
 # yup-phone-lite
 
-[![MIT License](https://badgen.net/github/license/csandman/yup-phone-lite "MIT License")](LICENSE) [![npm - yup-phone-lite](https://img.shields.io/npm/v/yup-phone-lite "yup-phone-lite npm")](https://www.npmjs.com/package/yup-phone-lite) [![bundle size - yup-phone-lite](https://badgen.net/bundlephobia/min/yup-phone-lite "yup-phone-lite bundlephobia")](https://bundlephobia.com/result?p=yup-phone-lite) [![bundle size - yup-phone-lite](https://badgen.net/bundlephobia/minzip/yup-phone-lite "yup-phone-lite bundlephobia")](https://bundlephobia.com/result?p=yup-phone-lite) [![Total Downloads - yup-phone-lite](https://badgen.net/npm/dt/yup-phone-lite?color=blue "yup-phone-lite npm downloads")](https://bundlephobia.com/result?p=yup-phone-lite)
-
-
+[![MIT License](https://badgen.net/github/license/csandman/yup-phone-lite 'MIT License')](LICENSE)
+[![npm - yup-phone-lite](https://img.shields.io/npm/v/yup-phone-lite 'yup-phone-lite npm')](https://www.npmjs.com/package/yup-phone-lite)
+[![bundle size - yup-phone-lite](https://badgen.net/bundlephobia/min/yup-phone-lite 'yup-phone-lite bundlephobia')](https://bundlephobia.com/result?p=yup-phone-lite)
+[![bundle size - yup-phone-lite](https://badgen.net/bundlephobia/minzip/yup-phone-lite 'yup-phone-lite bundlephobia')](https://bundlephobia.com/result?p=yup-phone-lite)
+[![Total Downloads - yup-phone-lite](https://badgen.net/npm/dt/yup-phone-lite?color=blue 'yup-phone-lite npm downloads')](https://bundlephobia.com/result?p=yup-phone-lite)
 
 > Adds a phone number validation check to yup validator using [**libphonenumber-js**](https://www.npmjs.com/package/libphonenumber-js) which gives accurate validation checks.  
 > _Read more about the core library here_ [_libphonenumber_](https://github.com/googlei18n/libphonenumber/blob/master/README.md#readme).
 
 This package is a fork of [yup-phone](https://github.com/abhisekp/yup-phone) made by [abhisekp](https://github.com/abhisekp). It replaces [**google-libphonenumber**](https://www.npmjs.com/package/google-libphonenumber) with the much smaller port [**libphonenumber-js**](https://www.npmjs.com/package/libphonenumber-js) with the intention of drastically reducing the bundle size. The only drawback is that a few phone numbers will slip through the cracks and give false positives. If that is an issue for you, go ahead and use the original package!
 
+[![yup-phone minzipped size](https://badgen.net/bundlephobia/minzip/yup-phone?label=yup-phone 'yup-phone bundlephobia')](https://bundlephobia.com/result?p=yup-phone)
+[![yup-phone-lite minzipped size](https://badgen.net/bundlephobia/minzip/yup-phone-lite?label=yup-phone-lite 'yup-phone-lite bundlephobia')](https://bundlephobia.com/result?p=yup-phone-lite)
+
 ## Install
 
 ```sh
 npm install --save yup-phone-lite
-# yarn add yup-phone-lite
+# or
+yarn add yup-phone-lite
 ```
 
 ## Examples
 
 ```js
-import * as Yup from "yup";
+import * as Yup from 'yup';
 // const Yup = require("yup");
-import "yup-phone-lite";
+import 'yup-phone-lite';
 // require("yup-phone-lite");
 
 // validate any phone number (defaults to The United States for country)
 const phoneSchema = Yup.string().phone().required();
 
 (async () => {
-  console.log(await phoneSchema.isValid("(541) 754-3010")); // → true
+  console.log(await phoneSchema.isValid('(541) 754-3010')); // → true
 })();
 ```
 
 ---
 
 ```js
-import * as Yup from "yup";
+import * as Yup from 'yup';
 // const Yup = require("yup");
-import "yup-phone-lite";
+import 'yup-phone-lite';
 // require("yup-phone-lite");
 
 // validate phone number loosely in the given region
-const phoneSchema = Yup.string().phone("IN").required();
+const phoneSchema = Yup.string().phone('IN').required();
 
 (async () => {
-  console.log(await phoneSchema.isValid("+919876543210")); // → true
+  console.log(await phoneSchema.isValid('+919876543210')); // → true
 })();
 ```
 
 ---
 
 ```js
-import * as Yup from "yup";
+import * as Yup from 'yup';
 // const Yup = require("yup");
-import "yup-phone-lite";
+import 'yup-phone-lite';
 // require("yup-phone-lite");
 
 // validate phone number strictly in the given region with custom error message
 const phoneSchema = Yup.string()
-  .phone("IN", true, "${path} is invalid")
+  .phone('IN', true, '${path} is invalid')
   .required();
 
 try {
-  phoneSchema.validateSync("+1-541-754-3010");
+  phoneSchema.validateSync('+1-541-754-3010');
 } catch (error) {
   console.log(error.message); // → this is invalid
 }
