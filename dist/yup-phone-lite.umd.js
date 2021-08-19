@@ -3479,9 +3479,14 @@
 
 	  return this.test(YUP_PHONE_METHOD, errMsg, function (value) {
 	    try {
+	      if (value === undefined || value === "") {
+	        return true;
+	      }
 	      /* check if the countryCode provided should be used as
 	        default country code or strictly followed
 	      */
+
+
 	      return isValidPhoneNumber$1(value, countryCode);
 	    } catch (_unused) {
 	      return false;

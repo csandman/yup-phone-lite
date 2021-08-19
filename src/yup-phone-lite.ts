@@ -37,6 +37,10 @@ Yup.addMethod(
     // @ts-ignore
     return this.test(YUP_PHONE_METHOD, errMsg, (value: string) => {
       try {
+        if (value === undefined || value === "") {
+          return true;
+        }
+
         /* check if the countryCode provided should be used as
           default country code or strictly followed
         */
