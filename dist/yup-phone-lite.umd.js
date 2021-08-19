@@ -3470,14 +3470,14 @@
 	    errorMessage = "";
 	  }
 
-	  var errMsg = typeof errorMessage === "string" && errorMessage ? errorMessage : isValidCountryCode(countryCode) ? "${path} must be a valid phone number for region " + countryCode : "${path} must be a valid phone number."; // @ts-ignore
+	  if (!isValidCountryCode(countryCode)) {
+	    // if not valid countryCode, then set default country to United States (US)
+	    countryCode = "US";
+	  }
+
+	  var errMsg = typeof errorMessage === "string" && errorMessage ? errorMessage : "${path} must be a valid phone number for region " + countryCode; // @ts-ignore
 
 	  return this.test(YUP_PHONE_METHOD, errMsg, function (value) {
-	    if (!isValidCountryCode(countryCode)) {
-	      // if not valid countryCode, then set default country to United States (US)
-	      countryCode = "US";
-	    }
-
 	    try {
 	      /* check if the countryCode provided should be used as
 	        default country code or strictly followed

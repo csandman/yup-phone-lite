@@ -25,19 +25,17 @@ Yup.addMethod(
   Yup.string,
   YUP_PHONE_METHOD,
   function yupPhoneLite(countryCode?: CountryCode, errorMessage: string = "") {
+    if (!isValidCountryCode(countryCode)) {
+      // if not valid countryCode, then set default country to United States (US)
+      countryCode = "US";
+    }
+
     const errMsg =
       typeof errorMessage === "string" && errorMessage
         ? errorMessage
-        : isValidCountryCode(countryCode)
-        ? `\${path} must be a valid phone number for region ${countryCode}`
-        : "${path} must be a valid phone number.";
+        : `\${path} must be a valid phone number for region ${countryCode}`;
     // @ts-ignore
     return this.test(YUP_PHONE_METHOD, errMsg, (value: string) => {
-      if (!isValidCountryCode(countryCode)) {
-        // if not valid countryCode, then set default country to United States (US)
-        countryCode = "US";
-      }
-
       try {
         /* check if the countryCode provided should be used as
           default country code or strictly followed
