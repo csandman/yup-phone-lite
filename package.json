@@ -1,7 +1,7 @@
 {
   "name": "yup-phone-lite",
   "description": "Adds a phone number validation check to yup validator using libphonenumber-js.",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "dist/yup-phone-lite.cjs.js",
   "module": "dist/yup-phone-lite.esm.js",
   "browser": "dist/yup-phone-lite.umd.js",
