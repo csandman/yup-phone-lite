@@ -11,7 +11,7 @@
 
 This package is a fork of [yup-phone](https://github.com/abhisekp/yup-phone) made by [abhisekp](https://github.com/abhisekp). It replaces [**google-libphonenumber**](https://www.npmjs.com/package/google-libphonenumber) with the much smaller port [**libphonenumber-js**](https://www.npmjs.com/package/libphonenumber-js) with the intention of drastically reducing the bundle size.
 
-One difference between this and the original package is that there is no `strict` option for checking a phone number's country, it will always validate against the country code you pass in (or `US` by default). The only other difference is that a few phone numbers will slip through the cracks and give false positives. If either of those is an issue for you, go ahead and use the original package!
+One difference between this and the original package is that there is no `strict` option for checking a phone number's country, it will always validate against the country code you pass in (or `US` by default). This is because there is no "lenient" option for `libphonenumber-js` like there is with `google-libphonenumber`. The only other difference is that a few phone numbers will slip through the cracks and give false positives (at least according to the tests written for the original package). If either of those is an issue for you, go ahead and use the original package!
 
 [![yup-phone minzipped size](https://badgen.net/bundlephobia/minzip/yup-phone?label=yup-phone "yup-phone bundlephobia")](https://bundlephobia.com/result?p=yup-phone)
 [![yup-phone-lite minzipped size](https://badgen.net/bundlephobia/minzip/yup-phone-lite?label=yup-phone-lite "yup-phone-lite bundlephobia")](https://bundlephobia.com/result?p=yup-phone-lite)
@@ -53,7 +53,7 @@ Yup.string()
 
 Type: `string` — Default: `"US"`
 
-This field mirrors the [country code variable for libphonenumber-js](https://github.com/catamphetamine/libphonenumber-js#country-code). Here is their definition of a country code:
+This field mirrors the [country code argument for libphonenumber-js](https://github.com/catamphetamine/libphonenumber-js#country-code). Here is their definition of a country code:
 
 > A "country code" is a [two-letter ISO country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) (like `US`).
 >
@@ -71,8 +71,8 @@ In order to use the params provided by yup, you must pass the `errorMessage` in 
 
 Here are the yup params you can use in your string:
 
-- `testContext.path`: the string path of the current validation (in a basic validation it will be the string `"this"`, in an object validation, it will be the name of the object key)
-- `testContext.originalValue`: the original value that is being tested
+- `path`: the string path of the current validation (in a basic validation it will be the string `"this"`, in an object validation, it will be the name of the object key)
+- `originalValue`: the original value that is being tested
 
 **NOTE:** While the default error message includes the `countryCode` in it's template string, you can not pass it in the same way you include the `yup` interpolated values, you will have to include the code in the message itself.
 
