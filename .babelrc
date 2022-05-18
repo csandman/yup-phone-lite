@@ -7,13 +7,14 @@
       {
         "targets": {
           "browsers": "> 0.25%, not dead",
-          "node": "9"
+          "node": "16"
         },
         "loose": true,
-        "useBuiltIns": "usage",
+        "useBuiltIns": "entry",
         "corejs": 3,
         "shippedProposals": true
       }
     ]
-  ]
+  ],
+  "plugins": ["@babel/plugin-transform-runtime"]
 }
