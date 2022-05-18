@@ -1,1 +1,1 @@
-export * from "./yup-phone-lite";
+export * from './yup-phone-lite';
