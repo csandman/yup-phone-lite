@@ -1,5 +1,0 @@
-{
-  "linterOptions": {
-    "exclude": ["dist", "node_modules"]
-  }
-}
