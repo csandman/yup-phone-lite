@@ -5,15 +5,15 @@
     [
       "@babel/preset-env",
       {
+        "corejs": 3,
+        "loose": true,
+        "shippedProposals": true,
         "targets": {
-          "browsers": "> 0.25%, not dead",
           "node": "16"
         },
-        "loose": true,
-        "useBuiltIns": "entry",
-        "corejs": 3,
-        "shippedProposals": true
-      }
+        "useBuiltIns": "usage"
+      },
+      "minify"
     ]
   ],
   "plugins": ["@babel/plugin-transform-runtime"]
