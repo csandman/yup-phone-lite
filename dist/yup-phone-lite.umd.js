@@ -8149,28 +8149,24 @@
 	PhoneNumberSearch.prototype = Object.create(PhoneNumberSearch$1.prototype, {});
 	PhoneNumberSearch.prototype.constructor = PhoneNumberSearch;
 
-	var YUP_PHONE_METHOD = 'phone';
-	var CLDR_REGION_CODE_SIZE = 2;
+	const YUP_PHONE_METHOD = 'phone';
+	const CLDR_REGION_CODE_SIZE = 2;
 
-	var isValidCountryCode = function isValidCountryCode(countryCode) {
-	  var isString = typeof countryCode === 'string';
-	  var isValidCodeLength = (countryCode == null ? void 0 : countryCode.length) === CLDR_REGION_CODE_SIZE;
+	const isValidCountryCode = countryCode => {
+	  const isString = typeof countryCode === 'string';
+	  const isValidCodeLength = (countryCode == null ? void 0 : countryCode.length) === CLDR_REGION_CODE_SIZE;
 	  return isString && isValidCodeLength;
 	};
 
-	Yup__namespace.addMethod(Yup__namespace.string, YUP_PHONE_METHOD, function yupPhoneLite(countryCode, errorMessage) {
-	  if (errorMessage === void 0) {
-	    errorMessage = '';
-	  }
-
+	Yup__namespace.addMethod(Yup__namespace.string, YUP_PHONE_METHOD, function yupPhoneLite(countryCode, errorMessage = '') {
 	  if (!isValidCountryCode(countryCode)) {
 	    // if not valid countryCode, then set default country to United States (US)
 	    countryCode = 'US';
 	  }
 
-	  var errMsg = typeof errorMessage === 'string' && errorMessage ? errorMessage : "${path} must be a valid phone number for region " + countryCode; // @ts-ignore
+	  const errMsg = typeof errorMessage === 'string' && errorMessage ? errorMessage : `\${path} must be a valid phone number for region ${countryCode}`; // @ts-ignore
 
-	  return this.test(YUP_PHONE_METHOD, errMsg, function (value) {
+	  return this.test(YUP_PHONE_METHOD, errMsg, value => {
 	    try {
 	      if (value === undefined || value === '') {
 	        return true;
@@ -8181,7 +8177,7 @@
 
 
 	      return isValidPhoneNumber(value, countryCode);
-	    } catch (_unused) {
+	    } catch {
 	      return false;
 	    }
 	  });
