@@ -8,6 +8,7 @@
   "engines": {
     "node": ">=16"
   },
+  "browsers": "> 0.25%, not dead",
   "repository": {
     "type": "git",
     "url": "https://github.com/csandman/yup-phone-lite"
