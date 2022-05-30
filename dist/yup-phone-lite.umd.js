@@ -497,8 +497,8 @@
 	  }
 	};
 
-	// Importing from `.json.js` a workaround for a bug in web browsers' "native"
-	function withMetadata(func, _arguments) {
+	// Importing from a ".js" file is a workaround for Node.js "ES Modules"
+	function withMetadataArgument(func, _arguments) {
 	  var args = Array.prototype.slice.call(_arguments);
 	  args.push(metadata);
 	  return func.apply(this, args);
@@ -7977,21 +7977,24 @@
 	}();
 
 	function isValidPhoneNumber() {
-	  return withMetadata(isValidPhoneNumber$1, arguments);
+	  return withMetadataArgument(isValidPhoneNumber$1, arguments);
 	}
 
+	// Importing from a ".js" file is a workaround for Node.js "ES Modules"
 	function PhoneNumberMatcher(text, options) {
 	  return PhoneNumberMatcher$1.call(this, text, options, metadata);
 	}
 	PhoneNumberMatcher.prototype = Object.create(PhoneNumberMatcher$1.prototype, {});
 	PhoneNumberMatcher.prototype.constructor = PhoneNumberMatcher;
 
+	// Importing from a ".js" file is a workaround for Node.js "ES Modules"
 	function AsYouType(country) {
 	  return AsYouType$1.call(this, country, metadata);
 	}
 	AsYouType.prototype = Object.create(AsYouType$1.prototype, {});
 	AsYouType.prototype.constructor = AsYouType;
 
+	// Importing from a ".js" file is a workaround for Node.js "ES Modules"
 	function Metadata() {
 	  return Metadata$1.call(this, metadata);
 	}
@@ -8142,6 +8145,7 @@
 	  return PhoneNumberSearch;
 	}();
 
+	// Importing from a ".js" file is a workaround for Node.js "ES Modules"
 	function PhoneNumberSearch(text, options) {
 	  PhoneNumberSearch$1.call(this, text, options, metadata);
 	} // Deprecated.
