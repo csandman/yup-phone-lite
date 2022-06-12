@@ -1,5 +1,5 @@
-import { CountryCode } from 'libphonenumber-js/types';
-declare module 'yup' {
+import { CountryCode } from "libphonenumber-js/types";
+declare module "yup" {
     interface StringSchema {
         /**
          * Check for phone number validity.
