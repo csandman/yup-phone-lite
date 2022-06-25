@@ -45,41 +45,41 @@
   ],
   "dependencies": {
     "@types/yup": "^0.29.14",
-    "libphonenumber-js": "^1.10.6"
+    "libphonenumber-js": "^1.10.7"
   },
   "devDependencies": {
     "@ampproject/rollup-plugin-closure-compiler": "^0.27.0",
-    "@babel/core": "^7.18.2",
-    "@babel/plugin-transform-runtime": "^7.18.2",
+    "@babel/core": "^7.18.5",
+    "@babel/plugin-transform-runtime": "^7.18.5",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-typescript": "^7.17.12",
     "@babel/runtime": "^7.18.3",
-    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@types/babel__core": "^7.1.19",
     "@types/eslint": "^8.4.3",
-    "@types/jest": "^28.1.1",
+    "@types/jest": "^28.1.3",
     "@types/prettier": "^2.6.3",
-    "@typescript-eslint/eslint-plugin": "^5.27.1",
-    "@typescript-eslint/parser": "^5.27.1",
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
     "babel-jest": "^28.1.1",
-    "core-js": "^3.22.8",
-    "eslint": "^8.17.0",
+    "core-js": "^3.23.2",
+    "eslint": "^8.18.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "jest": "^28.1.1",
-    "prettier": "^2.6.2",
-    "rollup": "^2.75.6",
+    "prettier": "^2.7.1",
+    "rollup": "^2.75.7",
     "rollup-plugin-analyzer": "^4.0.0",
     "rollup-plugin-filesize": "^9.1.2",
     "rollup-plugin-progress": "^1.1.2",
     "rollup-plugin-ts": "^3.0.2",
-    "typescript": "^4.7.3",
+    "typescript": "^4.7.4",
     "yup": "^0.32.11"
   },
   "peerDependencies": {
-    "yup": ">0.27.0"
+    "yup": ">0.32.0"
   }
 }
