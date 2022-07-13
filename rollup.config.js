@@ -1,10 +1,11 @@
-import resolve from "rollup-plugin-node-resolve";
-import commonjs from "rollup-plugin-commonjs";
 import compiler from "@ampproject/rollup-plugin-closure-compiler";
-import typescript from "@wessberg/rollup-plugin-ts";
+import commonjs from "@rollup/plugin-commonjs";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
 import filesize from "rollup-plugin-filesize";
 import analyze from "rollup-plugin-analyzer";
 import progress from "rollup-plugin-progress";
+import typescript from "rollup-plugin-ts";
+
 import pkg from "./package.json";
 
 const commonWebConfig = {
@@ -23,11 +24,12 @@ const commonWebConfig = {
     progress(),
     filesize(),
     analyze(),
-    resolve({
+    nodeResolve({
       browser: true,
+      dedupe: ["yup"],
     }), // so Rollup can find `yup`
     commonjs({
-      include: "node_modules/**",
+      include: /node_modules/,
     }), // so Rollup can convert `yup` to an ES module
     typescript({
       transpiler: "babel",

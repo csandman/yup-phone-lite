@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-// import * as Yup from 'yup';
-const Yup = require("yup");
+import * as Yup from "yup";
 // import './yup-phone-lite';
 require("../dist/yup-phone-lite.cjs");
 
@@ -91,9 +90,8 @@ describe("yup-phone-lite validation", () => {
   it("does not perform required field validation without required chain", () => {
     const phoneSchema = Yup.string().phone();
     expect(phoneSchema.isValidSync("")).toBe(true);
-    expect(phoneSchema.isValidSync()).toBe(true);
     const requiredPhoneSchema = Yup.string().phone().required();
     expect(requiredPhoneSchema.isValidSync("")).toBe(false);
-    expect(requiredPhoneSchema.isValidSync()).toBe(false);
+    expect(requiredPhoneSchema.isValidSync("")).toBe(false);
   });
 });
