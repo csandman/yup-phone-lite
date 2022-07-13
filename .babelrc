@@ -9,7 +9,8 @@
         "loose": true,
         "shippedProposals": true,
         "targets": {
-          "node": "16"
+          "browsers": "> 0.25%, not dead",
+          "node": "9"
         },
         "useBuiltIns": "usage"
       },

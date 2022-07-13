@@ -6,7 +6,7 @@
   "module": "dist/yup-phone-lite.esm.js",
   "browser": "dist/yup-phone-lite.umd.js",
   "engines": {
-    "node": ">=16"
+    "node": ">=12"
   },
   "browsers": "> 0.25%, not dead",
   "repository": {
