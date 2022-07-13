@@ -137,7 +137,7 @@ For more examples, check [yup-phone-lite.test.ts](src/yup-phone-lite.test.ts) fi
 - Uses jest for testing.
 - Generates CJS, UMD, and ESM builds.
 - Use `npm version major|minor|patch` to version.
-- Use tslint and prettier for code formatting.
+- Use eslint and prettier for code formatting.
 - Uses semantic release for version.
 
 ```sh

@@ -12,5 +12,5 @@
     "target": "esnext",
     "moduleResolution": "node"
   },
-  "include": ["src/**/*"]
+  "include": ["src", "*.js"]
 }

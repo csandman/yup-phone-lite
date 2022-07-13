@@ -1,7 +1,5 @@
-// eslint-disable-next-line import/no-unresolved
 import * as Yup from "yup";
-// import './yup-phone-lite';
-require("../dist/yup-phone-lite.cjs");
+import "./yup-phone-lite";
 
 describe("yup-phone-lite validation", () => {
   it("validate phone number with US (USA) region", () => {
