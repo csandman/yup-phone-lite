@@ -90,7 +90,6 @@ describe("yup-phone-lite validation", () => {
   it("does not perform required field validation without required chain", () => {
     const phoneSchema = Yup.string().phone();
     expect(phoneSchema.isValidSync("")).toBe(true);
-    expect(phoneSchema.isValidSync("")).toBe(true);
     const requiredPhoneSchema = Yup.string().phone().required();
     expect(requiredPhoneSchema.isValidSync("")).toBe(false);
     expect(requiredPhoneSchema.isValidSync("")).toBe(false);
