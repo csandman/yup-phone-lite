@@ -1,8 +1,8 @@
-import * as Yup from 'yup';
-import { isValidPhoneNumber } from 'libphonenumber-js';
-import { CountryCode } from 'libphonenumber-js/types';
+import * as Yup from "yup";
+import { isValidPhoneNumber } from "libphonenumber-js";
+import { CountryCode } from "libphonenumber-js/types";
 
-declare module 'yup' {
+declare module "yup" {
   export interface StringSchema {
     /**
      * Check for phone number validity.
@@ -14,11 +14,11 @@ declare module 'yup' {
   }
 }
 
-const YUP_PHONE_METHOD = 'phone';
+const YUP_PHONE_METHOD = "phone";
 const CLDR_REGION_CODE_SIZE = 2;
 
 const isValidCountryCode = (countryCode: string | undefined): boolean => {
-  const isString = typeof countryCode === 'string';
+  const isString = typeof countryCode === "string";
   const isValidCodeLength = countryCode?.length === CLDR_REGION_CODE_SIZE;
 
   return isString && isValidCodeLength;
@@ -27,21 +27,21 @@ const isValidCountryCode = (countryCode: string | undefined): boolean => {
 Yup.addMethod(
   Yup.string,
   YUP_PHONE_METHOD,
-  function yupPhoneLite(countryCode?: CountryCode, errorMessage = '') {
+  function yupPhoneLite(countryCode?: CountryCode, errorMessage = "") {
     if (!isValidCountryCode(countryCode)) {
       // if not valid countryCode, then set default country to United States (US)
-      countryCode = 'US';
+      countryCode = "US";
     }
 
     const errMsg =
-      typeof errorMessage === 'string' && errorMessage
+      typeof errorMessage === "string" && errorMessage
         ? errorMessage
         : `\${path} must be a valid phone number for region ${countryCode}`;
 
     // @ts-ignore
     return this.test(YUP_PHONE_METHOD, errMsg, (value: string) => {
       try {
-        if (value === undefined || value === '') {
+        if (value === undefined || value === "") {
           return true;
         }
 
