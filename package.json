@@ -29,7 +29,7 @@
     "lint:types": "tsc --noEmit",
     "prepare": "husky install",
     "postpublish": "git push --tags",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm test && npm run build",
     "test": "jest",
     "preversion": "git fetch --tags --force"
   },
