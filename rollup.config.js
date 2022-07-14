@@ -1,6 +1,6 @@
 import compiler from "@ampproject/rollup-plugin-closure-compiler";
 import commonjs from "@rollup/plugin-commonjs";
-import { nodeResolve } from "@rollup/plugin-node-resolve";
+import resolve from "@rollup/plugin-node-resolve";
 import analyze from "rollup-plugin-analyzer";
 import filesize from "rollup-plugin-filesize";
 import progress from "rollup-plugin-progress";
@@ -23,19 +23,26 @@ const webConfig = {
     progress(),
     filesize(),
     analyze(),
-    nodeResolve({
+    resolve({
       browser: true,
-      dedupe: ["yup"],
     }), // so Rollup can find `yup`
     commonjs({
-      include: /node_modules/,
+      include: "node_modules/**",
     }), // so Rollup can convert `yup` to an ES module
     typescript({
       transpiler: "babel",
     }),
-    compiler(),
   ],
 };
+
+// browser-friendly UMD build
+const webMinConfig = Object.assign({}, webConfig, {
+  output: {
+    ...webConfig.output,
+    file: pkg.browser.replace(/(\.js)$/, ".min$1"), // yup-phone.umd.js → yup-phone.umd.min.js
+  },
+  plugins: [...webConfig.plugins, compiler()],
+});
 
 // CommonJS (for Node) and ES module (for bundlers) build.
 // (We could have three entries in the configuration array
@@ -45,7 +52,7 @@ const webConfig = {
 // `file` and `format` for each target)
 const nodeConfig = {
   input: "src/yup-phone-lite.ts",
-  external: ["yup", "libphonenumber-js"],
+  external: ["yup"],
   output: [
     { file: pkg.main, format: "cjs", sourcemap: true },
     { file: pkg.module, format: "es", sourcemap: true },
@@ -63,4 +70,4 @@ const nodeConfig = {
 
 export default process.env.NODE_ENV === "test"
   ? nodeConfig
-  : [webConfig, nodeConfig];
+  : [webConfig, webMinConfig, nodeConfig];
