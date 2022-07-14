@@ -9,7 +9,6 @@
     "plugin:@typescript-eslint/recommended",
     "airbnb-base",
     "airbnb-typescript/base",
-    "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",
@@ -25,7 +24,7 @@
     "no-console": "warn",
     "no-await-in-loop": "off",
     "import/order": [
-      "error",
+      "warn",
       {
         "groups": [
           "builtin",
