@@ -1,21 +1,21 @@
 {
   "sourceMaps": true,
+  "plugins": ["@babel/plugin-transform-runtime"],
   "presets": [
     "@babel/typescript",
     [
       "@babel/preset-env",
       {
-        "corejs": 3,
-        "loose": true,
-        "shippedProposals": true,
         "targets": {
           "browsers": "> 0.25%, not dead",
           "node": "9"
         },
-        "useBuiltIns": "usage"
+        "loose": true,
+        "useBuiltIns": "usage",
+        "corejs": 2,
+        "shippedProposals": true
       },
       "minify"
     ]
-  ],
-  "plugins": ["@babel/plugin-transform-runtime"]
+  ]
 }
