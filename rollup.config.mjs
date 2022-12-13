@@ -5,7 +5,7 @@ import analyze from "rollup-plugin-analyzer";
 import filesize from "rollup-plugin-filesize";
 import progress from "rollup-plugin-progress";
 import typescript from "rollup-plugin-ts";
-import pkg from "./package.json";
+import pkg from "./package.json" assert { type: "json" };
 
 const webConfig = {
   input: "src/yup-phone-lite.ts",
