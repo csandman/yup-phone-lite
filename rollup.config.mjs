@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import compiler from "@ampproject/rollup-plugin-closure-compiler";
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
@@ -36,13 +37,14 @@ const webConfig = {
 };
 
 // browser-friendly UMD build
-const webMinConfig = Object.assign({}, webConfig, {
+const webMinConfig = {
+  ...webConfig,
   output: {
     ...webConfig.output,
     file: pkg.browser.replace(/(\.js)$/, ".min$1"), // yup-phone.umd.js → yup-phone.umd.min.js
   },
   plugins: [...webConfig.plugins, compiler()],
-});
+};
 
 // CommonJS (for Node) and ES module (for bundlers) build.
 // (We could have three entries in the configuration array
