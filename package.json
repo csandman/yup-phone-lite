@@ -95,7 +95,7 @@
   },
   "browsers": "> 0.25%, not dead",
   "lint-staged": {
-    "*.{js,ts}": "eslint --fix",
+    "*.{js,mjs,ts}": "eslint --fix",
     "*": "prettier --write --ignore-unknown",
     "package.json": "prettier-package-json --write"
   },
