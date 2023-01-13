@@ -18,6 +18,7 @@
     "dist"
   ],
   "scripts": {
+    "prebuild": "rimraf dist",
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "format": "npm run format:code && npm run format:package",
@@ -65,6 +66,7 @@
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.2",
     "prettier-package-json": "^2.8.0",
+    "rimraf": "^4.0.4",
     "rollup": "^3.10.0",
     "rollup-plugin-analyzer": "^4.0.0",
     "rollup-plugin-filesize": "^9.1.2",
