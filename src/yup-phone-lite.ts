@@ -1,4 +1,4 @@
-import { isValidPhoneNumber } from "libphonenumber-js";
+import { isValidPhoneNumber, isSupportedCountry } from "libphonenumber-js";
 import * as Yup from "yup";
 import type { CountryCode } from "libphonenumber-js/types";
 
@@ -7,38 +7,47 @@ declare module "yup" {
     /**
      * Check for phone number validity.
      *
-     * @param countryCode - The country code to check against
+     * @param countryCode - The country code to check against (default: `"US"`)
      * @param errorMessage - The error message to return if validation fails
      */
-    phone(countryCode?: CountryCode, errorMessage?: string): StringSchema;
+    phone(
+      countryCode?: CountryCode | CountryCode[],
+      errorMessage?: string
+    ): StringSchema;
   }
 }
 
 const YUP_PHONE_METHOD = "phone";
-const CLDR_REGION_CODE_SIZE = 2;
 
 const isValidCountryCode = (countryCode?: string): boolean => {
-  const isString = typeof countryCode === "string";
-  const isValidCodeLength = countryCode?.length === CLDR_REGION_CODE_SIZE;
+  if (typeof countryCode !== "string") {
+    return false;
+  }
 
-  return isString && isValidCodeLength;
+  return isSupportedCountry(countryCode);
 };
 
 Yup.addMethod(
   Yup.string,
   YUP_PHONE_METHOD,
-  function yupPhoneLite(countryCode?: CountryCode, errorMessage?: string) {
-    let realCountryCode = countryCode;
+  function yupPhoneLite(
+    countryCode: CountryCode | CountryCode[] = "US",
+    errorMessage?: string
+  ) {
+    const countryCodes: CountryCode[] = [countryCode].flat();
 
-    if (!isValidCountryCode(countryCode)) {
-      // if not valid countryCode, then set default country to United States (US)
-      realCountryCode = "US";
+    let validCountryCodes = countryCodes.filter(isValidCountryCode);
+
+    if (!validCountryCodes.length) {
+      validCountryCodes = ["US"];
     }
 
     const errMsg =
       typeof errorMessage === "string" && errorMessage
         ? errorMessage
-        : `\${path} must be a valid phone number for region ${countryCode}`;
+        : `\${path} must be a valid phone number for region${
+            validCountryCodes.length > 1 ? "s" : ""
+          } ${validCountryCodes.join(", ")}`;
 
     return this.test(YUP_PHONE_METHOD, errMsg, (value?: string) => {
       try {
@@ -46,10 +55,14 @@ Yup.addMethod(
           return true;
         }
 
-        /* check if the countryCode provided should be used as
-          default country code or strictly followed
-        */
-        const isValid = isValidPhoneNumber(value, realCountryCode);
+        const isValid = validCountryCodes.reduce(
+          (isValidAccum, validCountryCode) => {
+            const isValidPhone = isValidPhoneNumber(value, validCountryCode);
+
+            return isValidAccum || isValidPhone;
+          },
+          false
+        );
         return isValid;
       } catch {
         return false;
