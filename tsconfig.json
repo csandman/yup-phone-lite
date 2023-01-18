@@ -3,6 +3,7 @@
   "compilerOptions": {
     "target": "es5",
     "declaration": true,
+    "declarationMap": true,
     "sourceMap": true,
     "incremental": true,
     "experimentalDecorators": true,
@@ -12,7 +13,6 @@
     "pretty": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "declarationMap": true,
     "forceConsistentCasingInFileNames": true
   },
   "include": ["src", "*.js"]
