@@ -1,5 +1,5 @@
 {
   "buildCommand": "build",
-  "sandboxes": ["enjfs8"],
+  "sandboxes": ["enjfs8", "t5bh9f"],
   "node": "16"
 }
