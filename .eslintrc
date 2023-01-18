@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/eslintrc.json",
   "env": {
     "browser": true,
     "es2021": true,
@@ -7,6 +8,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
     "airbnb-base",
     "airbnb-typescript/base",
     "prettier"
@@ -17,12 +20,11 @@
     "sourceType": "module",
     "project": "tsconfig.json"
   },
-  "plugins": ["@typescript-eslint", "eslint-plugin-tsdoc"],
+  "plugins": ["@typescript-eslint", "eslint-plugin-tsdoc", "deprecation"],
   "rules": {
     "curly": ["error", "all"],
+    "deprecation/deprecation": "warn",
     "import/prefer-default-export": "off",
-    "no-console": "warn",
-    "no-await-in-loop": "off",
     "import/order": [
       "warn",
       {
@@ -41,14 +43,21 @@
         }
       }
     ],
-    "tsdoc/syntax": "warn",
+    "no-console": "warn",
     "@typescript-eslint/consistent-type-imports": [
       "warn",
       {
         "prefer": "type-imports",
         "disallowTypeAnnotations": true
       }
-    ],
-    "@typescript-eslint/ban-ts-comment": "off"
-  }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts"],
+      "rules": {
+        "tsdoc/syntax": "warn"
+      }
+    }
+  ]
 }
