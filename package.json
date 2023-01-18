@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/package",
   "name": "yup-phone-lite",
   "version": "2.0.0",
   "description": "Adds a phone number validation check to yup using libphonenumber-js.",
@@ -26,21 +27,20 @@
   ],
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "concurrently npm:build:* && npm run cleanup",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --extensions .ts -d dist/cjs --source-maps --ignore src/*.test.ts",
-    "build:esm": "cross-env BABEL_ENV=esm babel src --extensions .ts -d dist/esm --source-maps --ignore src/*.test.ts",
+    "build": "concurrently npm:build:*",
+    "postbuild": "rimraf dist/**/*.test.*",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --extensions .ts -d dist/cjs --source-maps --ignore **/*.test.ts",
+    "build:esm": "cross-env BABEL_ENV=esm babel src --extensions .ts -d dist/esm --source-maps --ignore **/*.test.ts",
     "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
-    "cleanup": "rimraf tsconfig.tsbuildinfo && rimraf dist/types/*.test.*",
     "dev": "nodemon --watch src -e ts --exec npm run build",
     "format": "concurrently npm:format:*",
     "format:code": "prettier --write .",
     "format:package": "prettier-package-json --write",
-    "lint": "npm run lint:code && npm run lint:types",
-    "lint:code": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "concurrently npm:lint:*",
+    "lint:code": "eslint . --fix",
     "lint:types": "tsc --noEmit",
     "prepare": "husky install",
-    "prepublishOnly": "npm test && npm run build",
+    "prepublishOnly": "npm test && npm run lint && npm run build",
     "postpublish": "git push --tags",
     "test": "cross-env BABEL_ENV=cjs jest src",
     "preversion": "git fetch --tags --force"
@@ -55,7 +55,6 @@
   "devDependencies": {
     "@babel/cli": "^7.20.7",
     "@babel/core": "^7.20.12",
-    "@babel/plugin-transform-runtime": "^7.19.6",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.18.6",
     "@types/jest": "^29.2.5",
@@ -67,6 +66,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-deprecation": "^1.3.3",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-tsdoc": "^0.2.17",
     "husky": "^8.0.3",
@@ -98,10 +98,5 @@
     "registry": "https://registry.npmjs.org/"
   },
   "browsers": "> 0.25%, not dead",
-  "lint-staged": {
-    "*.{js,mjs,ts}": "eslint --fix",
-    "*": "prettier --write --ignore-unknown",
-    "package.json": "prettier-package-json --write"
-  },
   "readme": "README.md"
 }
