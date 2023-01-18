@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package",
   "name": "yup-phone-lite",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Adds a phone number validation check to yup using libphonenumber-js.",
   "license": "MIT",
   "author": "Chris Sandvik <chris.sandvik@gmail.com> (https://github.com/csandman)",
