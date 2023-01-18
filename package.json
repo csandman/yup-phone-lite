@@ -13,22 +13,22 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
-      "types": "./dist/types/index.d.ts",
-      "default": "./dist/esm/index.js"
+      "import": "./dist/esm/yup-phone-lite.js",
+      "require": "./dist/cjs/yup-phone-lite.js",
+      "types": "./dist/types/yup-phone-lite.d.ts",
+      "default": "./dist/esm/yup-phone-lite.js"
     }
   },
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/cjs/yup-phone-lite.js",
+  "module": "dist/esm/yup-phone-lite.js",
   "files": [
     "dist"
   ],
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "concurrently npm:build:*",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src/yup-phone-lite.ts -d dist/cjs --source-maps",
-    "build:esm": "cross-env BABEL_ENV=esm babel src/yup-phone-lite.ts -d dist/esm --source-maps",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --extensions .ts -d dist/cjs --source-maps",
+    "build:esm": "cross-env BABEL_ENV=esm babel src --extensions .ts -d dist/esm --source-maps",
     "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
     "dev": "rollup -c -w",
     "format": "concurrently npm:format:*",

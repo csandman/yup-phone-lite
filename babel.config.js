@@ -1,7 +1,7 @@
 const { BABEL_ENV } = process.env;
 const isCjs = BABEL_ENV !== undefined && BABEL_ENV === "cjs";
 
-const babelConfig = {
+module.exports = {
   plugins: ["@babel/plugin-transform-runtime"],
   presets: [
     "@babel/preset-typescript",
@@ -15,5 +15,3 @@ const babelConfig = {
     ],
   ],
 };
-
-export default babelConfig;
