@@ -8,11 +8,11 @@
       {
         "targets": {
           "browsers": "> 0.25%, not dead",
-          "node": "12"
+          "node": "9"
         },
         "loose": true,
         "useBuiltIns": "usage",
-        "corejs": 3,
+        "corejs": 2,
         "shippedProposals": true
       },
       "minify"
