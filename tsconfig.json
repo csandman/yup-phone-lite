@@ -1,7 +1,9 @@
 {
   "$schema": "http://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    "target": "es5",
     "declaration": true,
+    "declarationMap": true,
     "sourceMap": true,
     "incremental": true,
     "experimentalDecorators": true,
@@ -9,8 +11,9 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "pretty": true,
-    "target": "esnext",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["src", "*.mjs"]
+  "include": ["src", "*.js"]
 }

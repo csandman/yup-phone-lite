@@ -132,7 +132,6 @@ For more examples, check [yup-phone-lite.test.ts](src/yup-phone-lite.test.ts) fi
 
 ### Contributing
 
-- Uses Rollup for bundling.
 - Files are minified using closure compiler.
 - Uses jest for testing.
 - Generates CJS, UMD, and ESM builds.
