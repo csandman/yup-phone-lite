@@ -51,7 +51,7 @@ Yup.string()
 
 #### `countryCode`
 
-Type: `CountryCode | CountryCode[]` — Default: `"US"`
+Type: [`CountryCode | CountryCode[]`](https://github.com/catamphetamine/libphonenumber-js/blob/master/types.d.ts#L1-L3) — Default: `"US"`
 
 You can pass either a single country code string, or an array of country codes. This field mirrors the [country code argument for libphonenumber-js](https://github.com/catamphetamine/libphonenumber-js#country-code). Here is their definition of a country code:
 
