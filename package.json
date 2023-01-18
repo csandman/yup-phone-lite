@@ -1,6 +1,6 @@
 {
   "name": "yup-phone-lite",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Adds a phone number validation check to yup using libphonenumber-js.",
   "license": "MIT",
   "author": "Chris Sandvik <chris.sandvik@gmail.com> (https://github.com/csandman)",
