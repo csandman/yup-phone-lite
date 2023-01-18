@@ -67,6 +67,7 @@
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "prettier-package-json": "^2.6.4",
+    "rimraf": "^4.1.1",
     "rollup": "^2.76.0",
     "rollup-plugin-analyzer": "^4.0.0",
     "rollup-plugin-filesize": "^9.1.2",
