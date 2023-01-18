@@ -34,7 +34,8 @@ Yup.addMethod(
     countryCode: CountryCode | CountryCode[] = "US",
     errorMessage?: string
   ) {
-    const countryCodes: CountryCode[] = [countryCode].flat();
+    const countryCodes: CountryCode[] =
+      typeof countryCode === "string" ? [countryCode] : [...countryCode];
 
     let validCountryCodes = countryCodes.filter(isValidCountryCode);
 
