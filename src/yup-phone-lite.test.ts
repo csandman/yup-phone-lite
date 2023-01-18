@@ -105,6 +105,5 @@ describe("yup-phone-lite validation", () => {
     expect(phoneSchema.isValidSync("")).toBe(true);
     const requiredPhoneSchema = Yup.string().phone().required();
     expect(requiredPhoneSchema.isValidSync("")).toBe(false);
-    expect(requiredPhoneSchema.isValidSync("")).toBe(false);
   });
 });
