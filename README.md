@@ -11,8 +11,6 @@
 
 This package is a fork of [yup-phone](https://github.com/abhisekp/yup-phone) made by [abhisekp](https://github.com/abhisekp). It replaces [**google-libphonenumber**](https://www.npmjs.com/package/google-libphonenumber) with the much smaller port [**libphonenumber-js**](https://www.npmjs.com/package/libphonenumber-js) with the intention of drastically reducing the bundle size.
 
-One difference between this and the original package is that there is no `strict` option for checking a phone number's country, it will always validate against the country code you pass in (or `US` by default). This is because there is no "lenient" option for `libphonenumber-js` like there is with `google-libphonenumber`. The only other difference is that a few phone numbers will slip through the cracks and give false positives (at least according to the tests written for the original package). If either of those is an issue for you, go ahead and use the original package!
-
 [![yup-phone minzipped size](https://badgen.net/bundlephobia/minzip/yup-phone?label=yup-phone "yup-phone bundlephobia")](https://bundlephobia.com/result?p=yup-phone)
 [![yup-phone-lite minzipped size](https://badgen.net/bundlephobia/minzip/yup-phone-lite?label=yup-phone-lite "yup-phone-lite bundlephobia")](https://bundlephobia.com/result?p=yup-phone-lite)
 
@@ -39,29 +37,35 @@ Then create a schema like you normally would with `yup` except using the `.phone
 
 ```js
 Yup.string()
-  .phone("US", "Please enter a valid phone number")
+  .phone("US", true, "Please enter a valid phone number")
   .required("A phone number is required");
 ```
 
 ### API
 
 ```js
-.phone(countryCode, errorMessage)
+.phone(countryCode, strict, errorMessage)
 ```
 
 #### `countryCode`
 
-Type: `CountryCode | CountryCode[]` — Default: `"US"`
+Type: `CountryCode`
 
-You can pass either a single country code string, or an array of country codes. This field mirrors the [country code argument for libphonenumber-js](https://github.com/catamphetamine/libphonenumber-js#country-code). Here is their definition of a country code:
+You can pass a single country code string. This field mirrors the [country code argument for libphonenumber-js](https://github.com/catamphetamine/libphonenumber-js#country-code). Here is their definition of a country code:
 
 > A "country code" is a [two-letter ISO country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) (like `US`).
 >
 > This library supports all [officially assigned](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) ISO alpha-2 country codes, plus a few extra ones like: `AC` ([Ascension Island](https://en.wikipedia.org/wiki/Ascension_Island)), `TA` ([Tristan da Cunha](https://en.wikipedia.org/wiki/Tristan_da_Cunha)), `XK` ([Kosovo](https://en.wikipedia.org/wiki/Kosovo)).
 
+#### `strict`
+
+Type: `boolean` - Default: `false`
+
+How strictly should it check. Validate phone number strictly in the given region
+
 #### `errorMessage`
 
-Type: `string` — Default: `"${path} must be a valid phone number for region ${countryCode}"`
+Type: `string` — Default: `"${path} must be a valid phone number."`
 
 This field is the error message returned by `yup` when the validation fails. Here is [the yup documentation explaining it](https://github.com/jquense/yup#mixedtestname-string-message-string--function-test-function-schema):
 
@@ -78,7 +82,7 @@ Here are the yup params you can use in your string:
 
 ```js
 // e.g.
-.phone("US", "${path} must be a valid phone number for region US");
+.phone("US", true, "${path} must be a valid phone number for region US");
 ```
 
 ## Examples
@@ -89,7 +93,7 @@ import * as Yup from "yup";
 import "yup-phone-lite";
 // require("yup-phone-lite");
 
-// validate any phone number (defaults to "US" for country)
+// validate any phone number
 const phoneSchema = Yup.string().phone().required();
 
 phoneSchema.isValid("(541) 754-3010").then(console.log); // → true
@@ -103,7 +107,7 @@ import * as Yup from "yup";
 import "yup-phone-lite";
 // require("yup-phone-lite");
 
-// validate phone number for a country other than the US
+// validate phone number for a country
 const phoneSchema = Yup.string().phone("IN").required();
 
 phoneSchema.isValid("+919876543210").then(console.log); // → true
@@ -118,8 +122,10 @@ import "yup-phone-lite";
 // require("yup-phone-lite");
 
 // validate phone number in the given region with custom error message
-// NOTE: in order to pass a custom error message you must include the country code as the first argument, even if using the default "US"
-const phoneSchema = Yup.string().phone("IN", "${path} is invalid").required();
+// NOTE: in order to pass a custom error message you must include the country code as the first argument
+const phoneSchema = Yup.string()
+  .phone("IN", true, "${path} is invalid")
+  .required();
 
 try {
   phoneSchema.validateSync("+1-541-754-3010");

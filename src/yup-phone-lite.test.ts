@@ -3,37 +3,24 @@ import "./yup-phone-lite";
 
 describe("yup-phone-lite validation", () => {
   it("validate phone number with US (USA) region", () => {
-    const phoneSchema = Yup.string().phone("US").required();
+    const phoneSchema = Yup.string().phone("US", true).required();
     expect(phoneSchema.isValidSync("9876543210")).toBe(false);
     expect(phoneSchema.isValidSync("(541) 754-3010")).toBe(true); // Domestic
     expect(phoneSchema.isValidSync("(999) 974–2042")).toBe(false);
     expect(phoneSchema.isValidSync("+1-541-754-3010")).toBe(true); // International
     expect(phoneSchema.isValidSync("1-541-754-3010")).toBe(true); // Dialed in the US
     expect(phoneSchema.isValidSync("(212) 345-4567")).toBe(true);
+    expect(phoneSchema.isValidSync("+19876543210")).toBe(false);
   });
 
   it("validate phone number with IN (India) region", () => {
-    const phoneSchema = Yup.string().phone("IN").required();
+    const phoneSchema = Yup.string().phone("IN", true).required();
+    expect(phoneSchema.isValidSync("0404 999 999")).toBe(false);
     expect(phoneSchema.isValidSync("+19876543210")).toBe(false);
     expect(phoneSchema.isValidSync("+919876543210")).toBe(true);
     expect(phoneSchema.isValidSync("9876543210")).toBe(true);
     expect(phoneSchema.isValidSync("+9124 4723300")).toBe(false);
-    expect(phoneSchema.isValidSync("+1 345 9490088")).toBe(true);
-  });
-
-  it("validate phone number with US (USA) or IN (India) region", () => {
-    const phoneSchema = Yup.string().phone(["US", "IN"]).required();
-    expect(phoneSchema.isValidSync("9876543210")).toBe(true);
-    expect(phoneSchema.isValidSync("(541) 754-3010")).toBe(true);
-    expect(phoneSchema.isValidSync("(999) 974–2042")).toBe(true);
-    expect(phoneSchema.isValidSync("+1-541-754-3010")).toBe(true);
-    expect(phoneSchema.isValidSync("1-541-754-3010")).toBe(true);
-    expect(phoneSchema.isValidSync("(212) 345-4567")).toBe(true);
-    expect(phoneSchema.isValidSync("+19876543210")).toBe(false);
-    expect(phoneSchema.isValidSync("+919876543210")).toBe(true);
-    expect(phoneSchema.isValidSync("9876543210")).toBe(true);
-    expect(phoneSchema.isValidSync("+9124 4723300")).toBe(false);
-    expect(phoneSchema.isValidSync("+1 345 9490088")).toBe(true);
+    expect(phoneSchema.isValidSync("+1 345 9490088")).toBe(false);
   });
 
   it("validate phone number with AU (Australia) region", () => {
@@ -101,8 +88,11 @@ describe("yup-phone-lite validation", () => {
   });
 
   it("does not perform required field validation without required chain", () => {
-    const phoneSchema = Yup.string().phone();
-    expect(phoneSchema.isValidSync("")).toBe(true);
+    const phoneSchema = Yup.string().phone("US", true, "is invalid").required();
+    expect(phoneSchema.isValidSync("")).toBe(false);
+    expect(() => {
+      phoneSchema.validateSync("+1 345 9490088");
+    }).toThrow("is invalid");
     const requiredPhoneSchema = Yup.string().phone().required();
     expect(requiredPhoneSchema.isValidSync("")).toBe(false);
   });
